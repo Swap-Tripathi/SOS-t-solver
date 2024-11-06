@@ -3,8 +3,8 @@
 
 cff-version: 1.2.0
 title: >-
-  Software: Lyapunov Density on Torus using Trigonometric
-  Polynomials
+  Software: Lyapunov Certificates using Trigonometric Polynomials
+
 message: >-
   If you use this software, please cite it using the
   metadata from this file.
