@@ -1,0 +1,359 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 13.2' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     13196,        351]
+NotebookOptionsPosition[     12616,        333]
+NotebookOutlinePosition[     13020,        349]
+CellTagsIndexPosition[     12977,        346]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["Synchronization of (d+1) oscillator-system", "Subsection",
+ CellChangeTimes->{{3.935040456383768*^9, 3.935040484764086*^9}, {
+  3.9389311496759977`*^9, 
+  3.938931151957245*^9}},ExpressionUUID->"21948920-414b-4b1b-b9d7-\
+df37dd2b43d9"],
+
+Cell["\<\
+Instructions: After running the MATLAB code, save the Gram-Matrix (matrix V \
+in MATLAB workspace) as \[OpenCurlyDoubleQuote]MatrixGV.mat\
+\[CloseCurlyDoubleQuote] and change the part \
+Import[\[OpenCurlyDoubleQuote]location\\\\MatrixGV.mat] as per the location \
+where the file is stored. For other dimensions, d needs to be changed as well.\
+\>", "Text",
+ CellChangeTimes->{{3.9350493427263565`*^9, 3.935049662387867*^9}, {
+  3.93987281371264*^9, 
+  3.9398728179443307`*^9}},ExpressionUUID->"f7a49b75-f8b4-4485-97b6-\
+c9429b4548d1"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"Clear", "[", "\"\<Global`*\>\"", "]"}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"ClearAll", ";"}], "\[IndentingNewLine]", 
+  RowBox[{"(*", 
+   RowBox[{
+    RowBox[{"Number", " ", "of", " ", "phase"}], "-", 
+    RowBox[{"difference", " ", 
+     RowBox[{"variables", ".", " ", "Change"}], " ", "with", " ", 
+     StyleBox["number",
+      FontSlant->"Italic",
+      FontVariations->{"Underline"->True}], 
+     StyleBox[" ",
+      FontSlant->"Italic",
+      FontVariations->{"Underline"->True}], 
+     StyleBox["of",
+      FontSlant->"Italic",
+      FontVariations->{"Underline"->True}], 
+     StyleBox[" ",
+      FontSlant->"Italic",
+      FontVariations->{"Underline"->True}], 
+     StyleBox["oscillators",
+      FontSlant->"Italic",
+      FontVariations->{"Underline"->True}], " ", "for", " ", "stability"}]}], 
+   "*)"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"d", "=", "2"}], ";"}], "      ", "\[IndentingNewLine]", 
+  RowBox[{"(*", 
+   RowBox[{
+    RowBox[{
+    "Import", " ", "matlab", " ", "file", " ", "storing", " ", "the", " ", 
+     "matrix"}], ";", " ", 
+    RowBox[{"change", " ", "location", " ", "accordingly"}]}], 
+   "*)"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"GV", ":=", 
+   RowBox[{"First", "[", 
+    RowBox[{
+    "Import", "[", "\"\<insert_folder_location_here\\\\MatrixGV.mat\>\"", 
+     "]"}], "]"}]}], "\[IndentingNewLine]", 
+  RowBox[{"(*", " ", 
+   RowBox[{
+    RowBox[{"Finding", " ", "the", " ", 
+     StyleBox["degree",
+      FontVariations->{"Underline"->True}], 
+     StyleBox[" ",
+      FontVariations->{"Underline"->True}], 
+     StyleBox["of",
+      FontVariations->{"Underline"->True}], 
+     StyleBox[" ",
+      FontVariations->{"Underline"->True}], 
+     StyleBox["trigonometric",
+      FontVariations->{"Underline"->True}], 
+     StyleBox[" ",
+      FontVariations->{"Underline"->True}], 
+     StyleBox["polynomial",
+      FontVariations->{"Underline"->True}]}], 
+    StyleBox[",",
+     FontVariations->{"Underline"->True}], " ", 
+    RowBox[{
+     SubscriptBox["n", "v"], 
+     StyleBox[
+      SubscriptBox[".1", "d"],
+      FontWeight->"Bold"]}], ",", 
+    StyleBox[" ",
+     FontWeight->"Bold"], 
+    RowBox[{
+     RowBox[{"corresponding", " ", "to", " ", 
+      SubscriptBox["G", "V"]}], ";", 
+     StyleBox[" ",
+      FontWeight->"Bold"], 
+     RowBox[{
+      StyleBox["the",
+       FontWeight->"Plain"], 
+      StyleBox[" ",
+       FontWeight->"Plain"], 
+      StyleBox["matrix",
+       FontWeight->"Plain"], 
+      StyleBox[" ",
+       FontWeight->"Plain"], 
+      StyleBox["must",
+       FontWeight->"Plain"], 
+      StyleBox[" ",
+       FontWeight->"Plain"], 
+      StyleBox["be",
+       FontWeight->"Plain"], 
+      StyleBox[" ",
+       FontWeight->"Plain"], 
+      StyleBox["of",
+       FontWeight->"Plain"], 
+      StyleBox[" ",
+       FontWeight->"Plain"], 
+      StyleBox["size",
+       FontWeight->"Plain"], 
+      StyleBox[" ",
+       FontWeight->"Plain"], 
+      SuperscriptBox[
+       RowBox[{
+        StyleBox["(",
+         FontWeight->"Plain"], 
+        RowBox[{
+         SubscriptBox[
+          StyleBox["n",
+           FontWeight->"Plain"], "v"], "+", "1"}], 
+        StyleBox[")",
+         FontWeight->"Plain"]}], "d"], " ", "for", " ", "the", " ", 
+      "relation"}]}]}], " ", "*)"}], 
+  "              "}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"nv", "=", 
+    RowBox[{
+     RowBox[{"Surd", "[", 
+      RowBox[{
+       RowBox[{"Max", "[", 
+        RowBox[{"Dimensions", "[", "GV", "]"}], "]"}], ",", "d"}], "]"}], "-",
+      "1"}]}], ";"}], " ", "\[IndentingNewLine]", 
+  RowBox[{"(*", " ", 
+   RowBox[{"function", " ", "to", " ", 
+    RowBox[{"generate", " ", "[", 
+     RowBox[{"1", ",", 
+      SuperscriptBox["e", 
+       RowBox[{"i", " ", "ThetaI"}]], ",", "...", ",", 
+      SuperscriptBox["e", 
+       RowBox[{"i", " ", 
+        RowBox[{"(", 
+         RowBox[{"degTrig", "-", "1"}], ")"}], " ", "ThetaI"}]]}], "]"}]}], 
+   "*)"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"generateMatrix", "[", 
+    RowBox[{"degTrig_", ",", "ThetaI_"}], "]"}], ":=", 
+   RowBox[{"Table", "[", 
+    RowBox[{
+     RowBox[{"Exp", "[", 
+      RowBox[{"I", "*", "k", "*", "ThetaI"}], "]"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"k", ",", "0", ",", "degTrig"}], "}"}]}], "]"}]}], " ", 
+  "\[IndentingNewLine]", 
+  RowBox[{"(*", 
+   RowBox[{"generate", " ", "the", " ", "list", " ", 
+    RowBox[{"{", 
+     RowBox[{
+      SubscriptBox["t", "d"], ",", "...", ",", 
+      SubscriptBox["t", "1"]}], "}"}]}], "*)"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"thetaList", "=", 
+    RowBox[{"Table", "[", 
+     RowBox[{
+      RowBox[{"Symbol", "[", 
+       RowBox[{"\"\<t\>\"", "<>", 
+        RowBox[{"ToString", "[", "i", "]"}]}], "]"}], ",", 
+      RowBox[{"{", 
+       RowBox[{"i", ",", "1", ",", "d"}], "}"}]}], "]"}]}], ";"}], " ", 
+  "\[IndentingNewLine]", 
+  RowBox[{"(*", 
+   RowBox[{
+   "tensor", " ", "product", " ", "in", " ", "the", " ", "order", " ", "of", 
+    " ", 
+    RowBox[{"thetalist", ":", " ", 
+     RowBox[{
+      RowBox[{
+       RowBox[{
+        RowBox[{"[", 
+         RowBox[{"1", ",", 
+          SuperscriptBox["e", 
+           RowBox[{"i", " ", 
+            SubscriptBox["t", "1"]}]], ",", "...", ",", 
+          SuperscriptBox["e", 
+           RowBox[{"i", " ", 
+            RowBox[{"(", 
+             RowBox[{"degTrig", "-", "1"}], ")"}], " ", 
+            SubscriptBox["t", "1"]}]]}], "]"}], "\[CircleTimes]"}], "..."}], 
+      "\[CircleTimes]", 
+      RowBox[{"[", 
+       RowBox[{"1", ",", 
+        SuperscriptBox["e", 
+         RowBox[{"i", " ", 
+          SubscriptBox["t", "d"]}]], ",", "...", ",", 
+        SuperscriptBox["e", 
+         RowBox[{"i", " ", 
+          RowBox[{"(", 
+           RowBox[{"degTrig", "-", "1"}], ")"}], " ", 
+          SubscriptBox["t", "d"]}]]}], "]"}]}]}]}], "*)"}], "\n", 
+  RowBox[{"(*", 
+   RowBox[{
+   "the", " ", "order", " ", "is", " ", "opposite", " ", "of", " ", "that", 
+    " ", "in", " ", "paper", " ", "because", " ", "the", " ", "tensor", " ", 
+    "product", " ", "defined", " ", "in", " ", 
+    RowBox[{"TrX", ".", "m"}], " ", "is", " ", "in", " ", "opposite", " ", 
+    "order", " ", "as", " ", "well"}], "*)"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"tensorProductMatrices", "[", 
+    RowBox[{"degTrig_", ",", "tList_"}], "]"}], ":=", 
+   RowBox[{"Flatten", "[", 
+    RowBox[{"Fold", "[", 
+     RowBox[{"KroneckerProduct", ",", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"generateMatrix", "[", 
+         RowBox[{"degTrig", ",", "#"}], "]"}], "&"}], "/@", "tList"}]}], 
+     "]"}], "]"}]}], " ", "\[IndentingNewLine]", 
+  RowBox[{"(*", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"generate", " ", "the", " ", "vector", " ", "of", " ", 
+      RowBox[{"monomials", ":", " ", 
+       RowBox[{"change", " ", "of", " ", "basis"}]}]}], ";", 
+     RowBox[{
+     "add", " ", "more", " ", "variables", " ", "while", " ", "defining", " ",
+       "y"}]}], ",", " ", 
+    RowBox[{"that", " ", "is"}], ",", " ", "t3_", ",", 
+    RowBox[{"..", "td_", " ", "accordingly"}]}], 
+   "*)"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"y", "[", 
+    RowBox[{"{", 
+     RowBox[{"t1_", ",", "t2_"}], "}"}], "]"}], ":=", 
+   RowBox[{"tensorProductMatrices", "[", 
+    RowBox[{"nv", ",", "thetaList"}], "]"}]}], "\[IndentingNewLine]", 
+  RowBox[{"(*", 
+   RowBox[{
+   "Converting", " ", "Gram", " ", "Matrix", " ", "to", " ", "Trigonometric", 
+    " ", "Polynomial"}], "*)"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"Conjugate", "[", 
+    RowBox[{"y", "[", 
+     RowBox[{"{", 
+      RowBox[{"t1", ",", "t2"}], "}"}], "]"}], "]"}], ".", "GV", ".", 
+   RowBox[{"y", "[", 
+    RowBox[{"{", 
+     RowBox[{"t1", ",", "t2"}], "}"}], "]"}]}], " "}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"(*", 
+   RowBox[{
+    RowBox[{"CAUTION", ":", " ", 
+     RowBox[{
+     "Use", " ", "Real", " ", "part", " ", "of", " ", "the", " ", "function", 
+      " ", "for", " ", "computational", " ", "purposes"}]}], ",", " ", 
+    RowBox[{
+    "the", " ", "expression", " ", "might", " ", "contain", " ", "very", " ", 
+     "small", " ", "complex", " ", "coefficients", " ", "due", " ", "to", " ",
+      "approximation", " ", "errors"}]}], "*)"}]}]}], "Input",
+ CellChangeTimes->{{3.9350383964892893`*^9, 3.9350384440317774`*^9}, {
+   3.93503891371552*^9, 3.935038939385956*^9}, {3.935039127925782*^9, 
+   3.9350391319238234`*^9}, {3.9350391861968784`*^9, 3.935039224794216*^9}, {
+   3.935039295442642*^9, 3.9350393215464926`*^9}, {3.9350394644754934`*^9, 
+   3.935039465358409*^9}, {3.9350398546984935`*^9, 3.935039858578953*^9}, {
+   3.935039917334323*^9, 3.935039919193954*^9}, {3.9350400760194855`*^9, 
+   3.9350400871822014`*^9}, {3.9350402878446026`*^9, 
+   3.9350404249507203`*^9}, {3.9350404970515633`*^9, 
+   3.9350405276727314`*^9}, {3.9350406154812455`*^9, 3.935040632879235*^9}, {
+   3.935040675674498*^9, 3.9350407300941405`*^9}, {3.9350407847037086`*^9, 
+   3.9350409286736975`*^9}, {3.9350453588813972`*^9, 3.935045384381624*^9}, {
+   3.935045500107376*^9, 3.935045641753903*^9}, {3.9350459052897325`*^9, 
+   3.935045943120632*^9}, {3.935046007439085*^9, 3.9350460132028923`*^9}, {
+   3.93504771058206*^9, 3.9350477787570543`*^9}, {3.935047809549671*^9, 
+   3.9350478267457*^9}, 3.935047877828673*^9, {3.935048027194335*^9, 
+   3.935048223913953*^9}, {3.9350485401656466`*^9, 3.935048541181834*^9}, {
+   3.935048572816203*^9, 3.935048604966754*^9}, {3.93504865141043*^9, 
+   3.9350486897579703`*^9}, {3.935048780362867*^9, 3.935048789042063*^9}, {
+   3.9350489363691225`*^9, 3.935048970518664*^9}, {3.9350491102827187`*^9, 
+   3.9350491197947855`*^9}, {3.935049155693493*^9, 3.9350491678515034`*^9}, {
+   3.935049239785598*^9, 3.935049240032304*^9}, {3.935049292311034*^9, 
+   3.9350493004253893`*^9}, 3.935049681678343*^9, {3.9350497569266415`*^9, 
+   3.9350499604496813`*^9}, {3.9350500016707845`*^9, 
+   3.9350500057699413`*^9}, {3.9350501077046633`*^9, 3.935050115867015*^9}, {
+   3.9350501688908663`*^9, 3.9350501960439615`*^9}, {3.935050231509692*^9, 
+   3.9350503089712505`*^9}, {3.935050812554667*^9, 3.935050837092471*^9}, {
+   3.935050923483129*^9, 3.935050926643962*^9}, {3.935051043365584*^9, 
+   3.935051400739047*^9}, {3.935051530417077*^9, 3.935051554945504*^9}, {
+   3.935051598140829*^9, 3.9350516719530325`*^9}, {3.9350526810437837`*^9, 
+   3.935052801958683*^9}, {3.9350531566305704`*^9, 3.935053165893258*^9}, {
+   3.9350601383780603`*^9, 3.935060186537079*^9}, {3.9350639380591555`*^9, 
+   3.935063941794704*^9}, {3.9350653954440317`*^9, 3.935065456425542*^9}, {
+   3.935065517580022*^9, 3.9350655214242306`*^9}, {3.935065553258811*^9, 
+   3.935065626649235*^9}, {3.9350657149936743`*^9, 3.9350657155256987`*^9}, {
+   3.935065868725168*^9, 3.9350659302355366`*^9}, {3.9350660367673235`*^9, 
+   3.9350660647552905`*^9}, {3.9350809358197165`*^9, 3.935080954243661*^9}, {
+   3.9350810841959786`*^9, 3.935081084945611*^9}, {3.935145748175383*^9, 
+   3.935145779826248*^9}, {3.9351459714146423`*^9, 3.9351459738138905`*^9}, {
+   3.935219447990307*^9, 
+   3.9352195023779383`*^9}},ExpressionUUID->"75e68853-1fb2-459b-9435-\
+b2a93b91d09a"]
+}, Open  ]]
+},
+WindowSize->{1141.2, 568.8},
+WindowMargins->{{0, Automatic}, {Automatic, 0}},
+FrontEndVersion->"13.2 for Microsoft Windows (64-bit) (January 30, 2023)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"d1eef716-fbdd-4048-963b-186f52bf3c47"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 241, 4, 54, "Subsection",ExpressionUUID->"21948920-414b-4b1b-b9d7-df37dd2b43d9"],
+Cell[824, 28, 544, 10, 58, "Text",ExpressionUUID->"f7a49b75-f8b4-4485-97b6-c9429b4548d1"],
+Cell[1371, 40, 11229, 290, 433, "Input",ExpressionUUID->"75e68853-1fb2-459b-9435-b2a93b91d09a"]
+}, Open  ]]
+}
+]
+*)
+
