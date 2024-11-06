@@ -1,1 +1,1 @@
-Choose the folder depending on the certification of almost global stability or local stability.
+Choose the folder depending on whether you want to certify almost global or local stability. Before running "driver.m", make changes according to the system in all the other files and add the CVX folder (from MATLAB) to the same directory containing all the code files.
