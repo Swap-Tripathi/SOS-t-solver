@@ -24,10 +24,11 @@ authors:
     orcid: 'https://orcid.org/0000-0002-0457-9027'
   - given-names: Ozkan
     family-names: Karabacak
+    affiliation: 'Kadir Has University, Istanbul, Turkey'
     orcid: 'https://orcid.org/0000-0002-8350-193X'
-  - orcid: 'https://orcid.org/0000-0003-2065-6907'
-    given-names: Savaş
+  - given-names: Savaş
     family-names: Şahin
+    orcid: 'https://orcid.org/0000-0003-2065-6907'
 identifiers:
   - type: doi
     value: 10.20944/preprints202409.1361.v1
