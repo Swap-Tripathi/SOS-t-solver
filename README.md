@@ -9,7 +9,7 @@ Step 1- Use the Mathematica file "Step1-Compute_Fourier_Coefficients_of_Oscillat
 Step 2- Input the matrix obtained in the previous case to the MATLAB file "F.m". For computational efficiency, you may skip. 
                   i.. the rows where the second half of the entries are zero. For instance, you may skip the row (1 2 3 0 0 0) while inputting in "F.m".
                   ii. the rows whose first half is negative of the first half of a previous row. For instance, suppose the matrix has the following rows 
-                                                                      ( *  *  * * * *) : * meaning any arbitrary element
+                                                                      ( *  *  * * * *)
                                                                       (-1 -2 -3 a b c)
                                                                       ( 1  2  3 x y z)
                                                                       ( *  *  * * * *)
