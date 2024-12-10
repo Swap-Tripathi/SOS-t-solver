@@ -36,7 +36,7 @@ identifiers:
       Paper on finding Lyapunov Certificates for systems on
       torus.
 repository-code: >-
-  https://github.com/Swap-Tripathi/Lyapunov-Certificates-using-Trigonometric-Polynomials
+  https://github.com/Swap-Tripathi/t-SOS-solver
 abstract: >-
   The repository contains programs to obtain the expression
   of Lyapunov density as per Theorem 1 in the paper
