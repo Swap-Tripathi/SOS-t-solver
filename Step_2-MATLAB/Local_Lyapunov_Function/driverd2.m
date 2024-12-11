@@ -37,13 +37,12 @@ for j = 1 : Ndata
     dimsGSV = [5, 5];
     dimsF   = [3, 3];
     
-    % [val_four, GS0V, GS12V, GS23V, GS13V, GS0W, GS12W, GS23W, GS13W] =...
-    %     solveSDPAlternatived3(dimsF, dimsGSV, r);
+    
 
     [val_four, V, W, X, Y] =...
         solveSDPAlternative(dimsF, dimsGSV, r);
 
-    % discuss (saw some cases where result is failed where it should be, but if controls only Infeasible???)
+   
     if strcmp(val_four,'Solved') 
         disp('optimal sol. found')
         a2Store = [a2Store, a];
