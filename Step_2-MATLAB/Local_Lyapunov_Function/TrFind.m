@@ -13,6 +13,6 @@ function TrX = TrFind(x, n, k)
             y = kron(y,diag(ones(n(i) - abs(k(i)), 1), k(i))); % toeplitz matrix is created, pji_j
         end
     end
-    TrX = TrX + trace(y' * x); % trace(pji_j * R),
+    TrX = TrX + trace(y * x); % trace(pji_j * R),
 
 end
